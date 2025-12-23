@@ -117,8 +117,6 @@ while(life > 0):
       if a == alp:
         hint[i] = a
 
-      i += 1
-
     if '_' in hint:
       print(f'Hint: {hint}\n')  
     else:
