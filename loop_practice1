@@ -1,0 +1,9 @@
+numbers = [1, 2, 3, 4, 2, 2, 5, 2, 3, 4, 2, 7]
+value_to_find = 2
+
+count = 0
+for i in numbers:
+  if i == value_to_find:
+    count += 1
+
+print(f'리스트에서 {value_to_find}는 {count}회 등장합니다')
