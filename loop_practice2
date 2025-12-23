@@ -1,0 +1,7 @@
+numbers = [10, 20, 30, 40, 50]
+total_sum = 0
+
+for i in numbers:
+  total_sum += i
+
+print(total_sum)
