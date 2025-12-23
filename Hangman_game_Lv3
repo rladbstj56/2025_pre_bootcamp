@@ -130,4 +130,10 @@ while(life > 0):
       print('마지막 기회입니다.\n')
 
 if life <= 0:
-  print(f'게임오버입니다.\n')
+  print(f'게임오버입니다. 정답은 {rand_word}이었습니다!\n')
+
+
+
+
+
+
