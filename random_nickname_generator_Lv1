@@ -1,0 +1,31 @@
+# 1st trial
+import random
+
+nick = [['기절초풍', '멋있는', '재미있는'],
+         ['도전적인', '노란색의', '바보같은'],
+         ['돌고래', '개발자', '오랑우탄']]
+
+i = 0
+word = []
+while(i<3):
+  rand = random.randrange(0,3) # 1,2,3 중 랜덤숫자
+  word.append(nick[i][rand])
+  i += 1
+
+print(word)
+
+# 2nd trial
+import random
+
+first_list = ["기철초풍", "멋있는", "재미있는"]
+second_list = ["도전적인", "노란색의", "바보같은"]
+third_list = ["돌고래", "개발자", "오랑우탄"]
+
+def create_random_nickname():
+  first = random.choice(first_list) # 리스트에서 직접 랜덤 선택
+  second = random.choice(second_list)
+  third = random.choice(third_list)
+  return first +' '+ second +' '+ third
+
+my_nickname = create_random_nickname()
+print(my_nickname)
