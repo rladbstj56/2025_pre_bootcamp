@@ -1,0 +1,13 @@
+drinks = {"사이다":1700,
+         "콜라":1900,
+         "식혜":2500,
+         "솔의눈":3000}
+for key, value in drinks.items():
+  print(f'{key} {value}원')
+
+drink = input("음료를 선택하세요   ")
+money = int(input("지불할 금액을 입력하세요   ")) # 정수형 변환
+if money < drinks[drink]:
+  print(f"돈이 {drinks[drink]-money}원 부족합니다")
+else:
+  print(f"{drink} 음료가 나왔습니다. \n거스름돈은 {money-drinks[drink]}원 입니다.")
