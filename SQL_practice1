@@ -1,0 +1,27 @@
+use basic;
+
+select *
+from basic.sparta_employees;
+
+truncate table basic.sparta_employees;
+
+insert into sparta_employees (name, position, salary, hire_date)
+values 
+	('르탄이', '개발자', 30000, '2022-05-01'),
+	('배캠이', 'PM', 40000, '2021-09-25'),
+	('구구이', '파트장', 35000, '2023-06-01'),
+	('이션이', '팀장', 50000, '2021-07-09');
+
+select name, position
+from basic.sparta_employees
+
+select distinct position
+from basic.sparta_employees
+
+select *
+from basic.sparta_employees se 
+where salary between 40000 and 60000
+
+select *
+from basic.sparta_employees se 
+where hire_date < '2023-01-01'
