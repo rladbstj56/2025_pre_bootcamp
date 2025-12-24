@@ -1,0 +1,37 @@
+use basic;
+
+create table basic.orders(
+	id int auto_increment primary key,
+	customer_id int,
+	product_id int,
+	amount int,
+	shipping_fee int,
+	order_date date
+	)
+
+select *
+from orders;
+
+insert into orders (customer_id, product_id, amount, shipping_fee, order_date)
+values 
+	(719, 1, 3, 50000, '2023-11-01'),
+	(131, 2, 1, 10000, '2023-11-02'),
+	(65, 4, 1, 20000, '2023-11-05'),
+	(1008, 3, 2, 25000, '2023-11-05'),
+	(356, 1, 1, 15000, '2023-11-09');
+
+select customer_id
+from orders
+where amount >= 2;
+
+select *
+from orders
+where order_date > '2023-11-02' and amount >= 2;
+
+select *
+from orders
+where amount < 3 and shipping_fee > 15000;
+
+select *
+from orders
+order by shipping_fee desc;
