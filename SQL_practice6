@@ -1,0 +1,39 @@
+# https://nbc-precamp-data.oopy.io/29a2dc3e-f514-81e7-8cd1-ed1c43203b31
+
+create table basic.lol_users(
+	id int auto_increment primary key,
+	name varchar(10),
+	region varchar(4),
+	rating int,
+	join_date date
+	);
+
+use basic;
+
+select *
+from lol_users;
+
+insert into lol_users (name, region, rating, join_date)
+values 
+	('르탄이', '한국', 1300, '2019-06-15'),
+	('배캠이', '미국', 1500, '2020-09-01'),
+	('구구이', '한국', 1400, '2021-01-07'),
+	('이션이', '미국', 1350, '2019-11-15')
+
+select name,
+	   rating,
+	   rank() over (order by rating desc) as order_rating
+from lol_users;
+
+select name, rating, join_date
+from lol_users
+order by join_date desc 
+limit 1;
+
+select *
+from lol_users
+order by region, rating;
+
+select region, avg(rating)
+from lol_users
+group by region;
