@@ -1,0 +1,48 @@
+# https://nbc-precamp-data.oopy.io/29a2dc3e-f514-81f8-8a08-db12891753a0
+
+create table basic.lol_feedbacks(
+	id int auto_increment primary key,
+	name varchar(10),
+	satisfaction_score int,
+	feedback_date date
+	);
+
+use basic;
+
+truncate table lol_feedbacks 
+
+select *
+from lol_feedbacks;
+
+insert into lol_feedbacks (name, satisfaction_score, feedback_date)
+values 
+	('르탄이', 5, '2025-03-01'),
+	('배캠이', 4, '2025-03-02'),
+	('구구이', 3, '2025-03-01'),
+	('이션이', 5, '2025-03-03'),
+	('구구이', 4, '2025-03-04');
+
+select name,
+	   satisfaction_score
+from lol_feedbacks
+order by 2 desc;
+
+select name, max(feedback_date) as latest
+from lol_feedbacks
+group by name;
+
+select count(*) as cnt
+from lol_feedbacks
+where satisfaction_score = 5;
+
+select name, count(*)
+from lol_feedbacks 
+group by name
+order by 2 desc
+limit 2;
+
+select feedback_date, avg(satisfaction_score)
+from lol_feedbacks 
+group by feedback_date
+order by 2 desc 
+limit 1;
