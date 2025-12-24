@@ -1,0 +1,43 @@
+# https://nbc-precamp-data.oopy.io/29a2dc3e-f514-817d-8b64-c3c67880637b
+
+drop table patients;
+
+
+create table patients (
+	id int auto_increment primary key,
+	name varchar(5),
+	birth_date date,
+	gender varchar(5),
+	last_visit_date date)
+	
+use basic;
+
+select *
+from patients;
+
+
+insert into patients (name, birth_date, gender, last_visit_date)
+values ('르탄이', '1985-04-12', '남자', '2023-03-15'),
+	   ('배캠이', '1990-08-05', '여자', '2023-03-20'),
+	   ('구구이', '1982-12-02', '여자', '2023-02-18'),
+	   ('이션이', '1999-03-02', '남자', '2023-03-17')
+	   
+	   
+select gender, count(*)
+from patients
+group by gender
+
+
+select name, birth_date, gender
+from patients
+where birth_date <= date_sub(current_date(), interval 40 year)
+
+
+select *
+from patients
+where last_visit_date <= date_sub(current_date(), interval 34 month)
+
+
+select count(*)
+from patients
+where birth_date between '1980-01-01' and '1989-12-31'
