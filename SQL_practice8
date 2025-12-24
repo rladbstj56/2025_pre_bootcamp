@@ -1,0 +1,24 @@
+# https://nbc-precamp-data.oopy.io/29a2dc3e-f514-8138-b00c-e796587fab93
+
+select *
+from doctors;
+
+	  
+select *
+from doctors
+where major = '성형외과'
+
+
+select major,count(*)
+from doctors
+group by major
+
+
+select count(*)
+from doctors
+where hire_date <= date_sub(current_date(), interval 2 year)
+
+
+select *,
+       datediff(current_date(), hire_date) as working _days
+from doctors
