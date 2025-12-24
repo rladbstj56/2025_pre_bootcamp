@@ -1,0 +1,39 @@
+create table basic.team_projects(
+	id int auto_increment primary key,
+	name varchar(10),
+	start_date date,
+	end_date date,
+	aws_cost int
+	);
+
+use basic;
+
+select *
+from team_projects;
+
+insert into team_projects (name, start_date, end_date, aws_cost)
+values 
+	('일조', '2023-01-01', '2023-01-07', 30000),
+	('꿈꾸는 이조', '2023-03-15', '2023-03-22', 50000),
+	('보람삼조', '2023-11-20','2023-11-30',80000),
+	('사조참치','2022-07-01','2022-07-30',75000);
+
+select name
+from team_projects
+where aws_cost >= 40000;
+
+select *
+from team_projects
+where year(start_date) = 2022;
+
+select *
+from team_projects
+where current_date() between start_date and end_date;
+
+select (end_date - start_date) as length
+from team_projects;
+
+select name, 
+	   datediff(end_date, start_date) as working_days, # 실제 사용 o
+	   (end_date - start_date) as wrong_working_days # 실제 사용 x
+from team_projects;
