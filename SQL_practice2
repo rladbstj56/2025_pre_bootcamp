@@ -1,0 +1,32 @@
+use basic;
+
+create table basic.products(
+	id int auto_increment primary key,
+	product_name varchar(10),
+	price int,
+	category varchar(10)
+	)
+
+select *
+from products;
+
+insert into products (product_name, price, category)
+values 
+	('맥북 프로', 1200, '컴퓨터'),
+	('다이슨 청소기', 300, '생활가전'),
+	('갤럭시탭', 600, '컴퓨터'),
+	('드롱기 커피머신', 200, '주방가전');
+
+select product_name, price
+from products;
+
+select *
+from products
+where product_name like '%프로%';
+
+select *
+from products
+where product_name like '갤%';
+
+select sum(price)
+from products;
