@@ -1,0 +1,70 @@
+# https://nbc-precamp-data.oopy.io/29a2dc3e-f514-81c8-a99b-ea98e0b9e012
+
+create table sql_pre_quests.products (
+	id int auto_increment primary key,
+	name varchar(5), 
+	price int
+)
+
+insert into sql_pre_quests.products (name, price)
+values ('랩톱', 1200),
+       ('핸드폰', 800),
+       ('타블렛', 400)
+       
+use sql_pre_quests; 
+
+select * from products;
+
+
+create table sql_pre_quests.orders (
+	id int primary key,
+	product_id int, 
+	quantity int,
+	order_date date)
+	
+insert into sql_pre_quests.orders (id, product_id, quantity, order_date)
+values (101, 1, 2, '2023-03-01'),
+	   (102, 2, 1, '2023-03-02'),
+	   (103, 3, 5, '2023-03-04')
+	   
+select * from orders;	   
+
+
+select o.id, p.name
+from orders o inner join products p on o.product_id = p.id ;
+
+
+select p.id, p.name, sum(p.price*o.quantity)
+from products p join orders o on p.id = o.product_id 
+group by p.id, p.name
+order by sum(p.price*o.quantity) desc
+limit 1;
+
+
+select p.id, p.name, sum(o.quantity) 
+from orders o join products p on o.product_id = p.id 
+group by p.id, p.name;
+
+
+select p.name
+from orders o join products p on o.product_id = p.id
+where o.order_date > '2023-03-03';
+
+
+select p.name, sum(o.quantity) 
+from orders o join products p on o.product_id = p.id 
+group by p.name
+order by sum(o.quantity) desc
+limit 1;
+
+
+
+select p.id,
+	   avg(o.quantity)
+from orders o join products p on o.product_id = p.id 
+group by p.id 
+
+
+select p.id, p.name
+from products p left join orders o on o.product_id = p.id 
+where o.id is null
