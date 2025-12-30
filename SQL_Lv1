@@ -1,0 +1,7 @@
+select count(distinct user_id) name_cnt
+from users 
+where name like '김%'
+
+select count(distinct user_id) name_cnt
+from users
+where substr(name,1,1) = '김'
