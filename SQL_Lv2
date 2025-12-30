@@ -1,0 +1,11 @@
+select 
+	date_format(created_at, '%Y-%m-%d') as created_at, # char type
+	round(avg(point),0) as average_points
+from point_users
+group by 1
+
+select
+	date(created_at) as created_at, # date type
+	round(avg(point)) as average_points 
+from point_users 
+group by date(created_at)
