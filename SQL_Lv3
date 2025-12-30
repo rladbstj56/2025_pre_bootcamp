@@ -1,0 +1,17 @@
+select
+	u.user_id,
+	u.email,
+	case when pu.point_user_id is null then 0 else pu.point end
+		AS  points
+from users u
+left join point_users pu 
+on u.user_id = pu.user_id 
+order by 3 desc;
+
+
+select u.user_id, u.email,
+	   COALESCE(p.point,0) as point 
+from users u
+left join point_users p
+on u.user_id = p.user_id 
+order by p.point desc;
