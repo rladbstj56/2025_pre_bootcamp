@@ -1,7 +1,48 @@
 # 문제 링크: https://nbc-precamp-data.oopy.io/29a2dc3e-f514-8146-a2dc-c46fea693d7d
 
+create table orders2 (
+	orderid int primary key,
+	customerid int,
+	orderdate date,
+	totalamount int)
+	
+insert into orders2
+values (101,1,'2024-01-01',150),
+	   (102,2,'2024-01-03',200),
+	   (103,1,'2024-01-04',300),
+	   (104,3,'2024-01-04',50),
+	   (105,2,'2024-01-05',80),
+	   (106,4,'2024-01-06',400),
+	   (107,5,'2025-12-30',250),
+	   (108,7,'2024-05-06',560),
+	   (109,7,'2024-03-22',322),
+	   (110,6,'2025-05-06',560)
+	  
+	   
+select * from orders2	  
+
+
+
+create table customers2 (
+	customerid int auto_increment primary key, 
+	customername varchar(10),
+	country varchar(10))
+	
+insert into customers2 (customername, country)
+values ('alice','usa'),
+       ('bob','uk'),
+       ('charlie','usa'),
+       ('david','canada'),
+       ('minnie','korea'),
+       ('gon', 'japan'), 
+       ('eren', 'germany')
+       
+select * from customers2
+
+
 # 문제 1
 # 고객별로 주문 건수와 총 주문 금액을 조회하는 SQL 쿼리를 작성해주세요. 
+
 
 select 
 	c.customername,  
