@@ -1,0 +1,37 @@
+# 문제 링크: https://nbc-precamp-data.oopy.io/29a2dc3e-f514-8146-a2dc-c46fea693d7d
+
+# 문제 1
+
+select 
+	c.customername,  
+	count(distinct o.orderid) as order_cnt, 
+	sum(o.totalamount) as total_spent
+from customers2 c 
+left join orders2 o 
+on c.customerid = o.customerid
+group by c.customername
+
+
+# 문제 2
+
+with ranked as (
+select  
+	c.country, 
+	c.customername, 
+	sum(o.totalamount) as top_spent
+from customers2 c 
+left join orders2 o 
+on c.customerid = o.customerid 
+group by c.country, c.customername
+),
+final_ranked as (
+select country, customername, top_spent, 
+ 	   row_number() over (
+ 	   		partition by country order by top_spent desc)
+ 	   		as rnk 
+from ranked
+order by country, customername 
+)
+select country, customername, top_spent 
+from final_ranked 
+where rnk = 1
