@@ -1,6 +1,7 @@
 # 문제 링크: https://nbc-precamp-data.oopy.io/29a2dc3e-f514-8146-a2dc-c46fea693d7d
 
 # 문제 1
+# 고객별로 주문 건수와 총 주문 금액을 조회하는 SQL 쿼리를 작성해주세요. 
 
 select 
 	c.customername,  
@@ -13,6 +14,8 @@ group by c.customername
 
 
 # 문제 2
+# 나라별로 총 주문 금액이 가장 높은 고객의 이름과 
+# 그 고객의 총 주문 금액을 조회하는 SQL 쿼리를 작성해주세요.
 
 with ranked as (
 select  
