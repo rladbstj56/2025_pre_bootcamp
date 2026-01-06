@@ -1,0 +1,92 @@
+# 문제 링크: https://nbc-precamp-data.oopy.io/29a2dc3e-f514-81be-ac9d-c604d45f96b3
+
+select * from employees2
+
+select * from projects 
+
+select * from basic.employeeprojects 
+
+-- 테이블 생성
+CREATE TABLE Projects (
+    ProjectID INT PRIMARY KEY,
+    ProjectName VARCHAR(50),
+    Budget INT
+);
+
+-- 데이터 삽입
+INSERT INTO Projects (ProjectID, ProjectName, Budget)
+VALUES 
+    (101, 'Alpha', 10000),
+    (102, 'Beta', 15000),
+    (103, 'Gamma', 12000),
+    (104, 'Delta', 8000);
+
+-- 테이블 생성
+CREATE TABLE basic.EmployeeProjects (
+    EmployeeID INT,
+    ProjectID INT,
+    -- 만약 Projects 테이블의 ProjectID를 참조하게 하고 싶다면 외래키(FOREIGN KEY)를 설정합니다.
+    FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID)
+);
+
+-- 데이터 삽입
+INSERT INTO basic.EmployeeProjects (EmployeeID, ProjectID)
+VALUES 
+    (1, 101),
+    (2, 101),
+    (3, 102),
+    (4, 103),
+    (5, 104),
+    (6, 102),
+    (6, 103);
+
+
+# 문제 1
+
+# 내가 작성한 CTE 쿼리
+with subquery as (
+select 
+	e2.department, 
+	max(e2.salary) as sal
+from basic.employees2 e2 
+group by e2.department
+)
+select e.name, e.department, e.salary 
+from basic.employees2 e 
+join subquery s
+on e.department = s.department
+and s.sal = e.salary
+
+
+# 내가 쓴 망한 서브 쿼리
+select e.name, e.department, e.salary 
+from basic.employees2 e 
+where e.salary = ( 
+	select max(subquery.sal) 
+	from 
+		(select 
+			e2.department, 
+			max(e2.salary) as sal
+		 from basic.employees2 e2 
+		 group by e2.department
+		 ) as subquery
+	) 
+and e.department = subquery.department
+
+# 정답 쿼리
+select e.name, e.department, e.salary 
+from basic.employees2 e 
+where e.salary = ( 
+	select max(e2.salary) 
+	from basic.employees2 e2
+	where e.department = e2.department
+) 
+
+
+# 문제 2 
+
+select e.name, p.projectname, p.budget
+from basic.employees2 e 
+join basic.employeeprojects ep on e.employeeid = ep.employeeid 
+join basic.projects p on p.projectid = ep.projectid
+where p.budget >= 10000
