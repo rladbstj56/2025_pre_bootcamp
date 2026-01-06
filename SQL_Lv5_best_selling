@@ -1,0 +1,53 @@
+# 문제 링크: https://nbc-precamp-data.oopy.io/29a2dc3e-f514-8174-8b3e-fe332d5ef00e
+
+insert into basic.orders3 
+values (107, 6, '2025-05-06', 4, 6),
+	   (108, 8, '2025-03-22', 3, 5),
+	   (109, 7, '2025-01-14', 2, 5),
+	   (110, 8, '2025-09-14', 1, 6)
+
+
+# 문제 1 
+	   
+select * from basic.orders3
+
+select * from basic.customers 
+
+select * from basic.products
+
+select 
+	c.customername, 
+	sum(o.quantity*p.price) as total_amount, 
+	count(distinct o.orderid)
+from basic.customers c
+join basic.orders3 o
+on c.customerid = o.customerid 
+join basic.products p 
+on p.id = o.productid
+group by customername
+
+
+# 문제 2 
+
+with totalsold_t as (
+select 
+	p.product_name, 
+	p.category, 
+	sum(o.quantity) as totalsold
+from basic.products p 
+join basic.orders3 o on p.id = o.productid
+group by 1, 2
+),
+high_totalsold_t as (
+select 
+	old_t.category,
+	old_t.product_name,
+	row_number() over (partition by old_t.category order by old_t.totalsold desc)
+	 as rnk, 
+	old_t.totalsold
+from totalsold_t old_t
+) 
+select category, product_name, totalsold 
+from high_totalsold_t as high 
+where rnk = 1
+
